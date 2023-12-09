@@ -10,11 +10,9 @@ const connectDB = async () => {
 	try {
 		await mongoose.connect(
 			`${process.env.MONGO_URL}`,
-			{
-				
+			{	
 				useNewUrlParser: true,
-				useUnifiedTopology: true,
-				
+				useUnifiedTopology: true,	
 			}
 		)
 
@@ -30,7 +28,9 @@ connectDB()
 const app = express()
 app.use(express.json())
 app.use(cors())
-
+app.get('/', (req, res) => {
+	res.send('Hello');
+  });
 app.use('/api/auth', authRouter)
 app.use('/api/posts', postRouter)
 
